@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy to Hostinger VPS
 
 on:
   push:
@@ -10,8 +10,12 @@ permissions:
   contents: read
   packages: write
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
 jobs:
-  build-and-push:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -23,20 +27,20 @@ jobs:
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
-          registry: ghcr.io
+          registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract Docker metadata
+      - name: Extract metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/${{ github.repository }}
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=latest
             type=sha
 
-      - name: Build and push
+      - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
           context: .
@@ -44,3 +48,118 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Deploy to Hostinger VPS
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          script: |
+            cd /home/${{ secrets.VPS_USER }}/apps/dhb
+
+            # Login no Docker registry
+            echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+            # Pull da imagem mais recente
+            docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+
+            # Parar container anterior
+            docker stop dhb-app || true
+            docker rm dhb-app || true
+
+            # Iniciar novo container
+            docker run -d \
+              --name dhb-app \
+              --restart always \
+              -p 4000:4000 \
+              -e NODE_ENV=production \
+              ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+
+            # Verificar status
+            docker ps | grep dhb-app
+
+      - name: Configure Nginx
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          script: |
+            # Criar arquivo de config nginx
+            sudo tee /etc/nginx/sites-available/dhb.dev.br > /dev/null <<'EOF'
+            server {
+                listen 80;
+                listen [::]:80;
+                server_name dhb.dev.br www.dhb.dev.br;
+
+                # Redirect HTTP para HTTPS
+                return 301 https://$server_name$request_uri;
+            }
+
+            server {
+                listen 443 ssl http2;
+                listen [::]:443 ssl http2;
+                server_name dhb.dev.br www.dhb.dev.br;
+
+                # SSL certificates (gerado pelo Certbot)
+                ssl_certificate /etc/letsencrypt/live/dhb.dev.br/fullchain.pem;
+                ssl_certificate_key /etc/letsencrypt/live/dhb.dev.br/privkey.pem;
+
+                # SSL configuration
+                ssl_protocols TLSv1.2 TLSv1.3;
+                ssl_ciphers HIGH:!aNULL:!MD5;
+                ssl_prefer_server_ciphers on;
+
+                # Performance
+                ssl_session_cache shared:SSL:10m;
+                ssl_session_timeout 10m;
+
+                # Compression
+                gzip on;
+                gzip_types text/plain text/css text/xml text/javascript application/x-javascript application/xml+rss application/json;
+
+                # Proxy settings
+                location / {
+                    proxy_pass http://localhost:4000;
+                    proxy_http_version 1.1;
+                    proxy_set_header Upgrade $http_upgrade;
+                    proxy_set_header Connection 'upgrade';
+                    proxy_set_header Host $host;
+                    proxy_set_header X-Real-IP $remote_addr;
+                    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                    proxy_set_header X-Forwarded-Proto $scheme;
+                    proxy_cache_bypass $http_upgrade;
+
+                    # Timeouts
+                    proxy_connect_timeout 60s;
+                    proxy_send_timeout 60s;
+                    proxy_read_timeout 60s;
+                }
+            }
+            EOF
+
+            # Enable site
+            sudo ln -sf /etc/nginx/sites-available/dhb.dev.br /etc/nginx/sites-enabled/
+
+            # Remover default se existir
+            sudo rm -f /etc/nginx/sites-enabled/default
+
+            # Test nginx config
+            sudo nginx -t
+
+            # Reload nginx
+            sudo systemctl reload nginx
+
+      - name: Verify Deployment
+        run: |
+          echo "✓ Deployment to Hostinger VPS completed successfully!"
+          echo "Application URL: https://dhb.dev.br"
+          echo ""
+          echo "Secrets required in GitHub Actions:"
+          echo "- VPS_HOST: IP ou domínio do VPS"
+          echo "- VPS_USER: usuário SSH (ex: root ou seu_usuario)"
+          echo "- VPS_SSH_KEY: private key SSH"
+          echo "- VPS_PORT: porta SSH (padrão: 22)"
