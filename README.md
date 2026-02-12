@@ -14,6 +14,7 @@ A DHB é uma empresa brasileira que oferece desenvolvimento frontend sob demanda
 - **Qualidade Garantida**: Mínimo de 70% de cobertura de testes unitários
 - **Trabalho 100% Remoto**: Flexibilidade e qualidade sem fronteiras
 - **Ferramentas Open Source**: Uso exclusivo de tecnologias livres
+- **Portfólio Real**: Sites e landing pages publicados
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -72,7 +73,7 @@ src/
 Cada seção foi separada em um componente independente para facilitar manutenção:
 
 - **HeroComponent** - Apresentação principal com logo SVG, título e botões CTA
-- **ServicesComponent** - Grid de serviços (Angular, UI/UX, Consultoria)
+- **ServicesComponent** - Grid de serviços (Frontend, UI/UX, Website/Landing Page, E-commerce, Consultoria)
 - **DifferentialsComponent** - Cards dos diferenciais (Qualidade, Remoto, Open Source)
 - **PortfolioComponent** - Showcase de projetos com hover effects
 - **ContactComponent** - Formulário reativo com validação completa
@@ -91,9 +92,9 @@ export { ContactComponent } from './contact/contact.component';
 ### 📱 Seções do Website
 
 1. **Hero Section** - Logo DHB, apresentação da empresa e call-to-actions
-2. **Serviços** - Desenvolvimento Angular, UI/UX Frontend, Consultoria Técnica
+2. **Serviços** - Frontend, UI/UX, Website/Landing Page, E-commerce, Consultoria
 3. **Diferenciais** - Qualidade Garantida, 100% Remoto, Open Source
-4. **Portfólio** - Showcase de projetos (E-commerce, Dashboard, Landing Pages)
+4. **Portfólio** - Showcase de projetos (Marsu, Accademic, Ocorrencias de Carga)
 5. **Contato** - Formulário reativo completo e informações de contato
 
 ### 🎨 Design System

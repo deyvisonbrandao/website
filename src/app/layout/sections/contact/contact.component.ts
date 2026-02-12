@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AlertComponent } from '../../../shared/components/alert/alert.component';
+import { AlertService } from '../../../shared/services/alert.service';
 import { AnalyticsService } from '../../../shared/services/analytics.service';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, AlertComponent],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
   encapsulation: ViewEncapsulation.None
@@ -14,6 +16,7 @@ import { AnalyticsService } from '../../../shared/services/analytics.service';
 export class ContactComponent implements OnInit {
   private fb = inject(FormBuilder);
   private analyticsService = inject(AnalyticsService);
+  private alertService = inject(AlertService);
 
   contactForm: FormGroup = this.fb.group({
     projectType: ['', Validators.required],
@@ -50,7 +53,7 @@ export class ContactComponent implements OnInit {
           throw new Error(payload?.message || 'Falha ao enviar email.');
         }
 
-        alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+        this.alertService.success('Mensagem enviada com sucesso! Entraremos em contato em breve.');
 
         // Track successful submission
         this.analyticsService.trackEvent('form_success', 'lead_generation', 'contact_form_completed');
@@ -58,7 +61,7 @@ export class ContactComponent implements OnInit {
         this.contactForm.reset();
       } catch (error) {
         console.error('Contato: erro ao enviar.', error);
-        alert('Nao foi possivel enviar sua mensagem. Tente novamente em instantes.');
+        this.alertService.error('Nao foi possivel enviar sua mensagem. Tente novamente em instantes.');
       }
     } else {
       // Track form validation errors
