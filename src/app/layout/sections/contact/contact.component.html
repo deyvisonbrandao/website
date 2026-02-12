@@ -1,0 +1,159 @@
+<!-- Contato Section -->
+<section id="contato" class="py-20 bg-gray-50 dark:bg-dark-800">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16 animate-fade-in-up">
+      <h2 class="text-4xl lg:text-5xl font-bold text-dark-900 dark:text-white mb-6 font-poppins">
+        Entre em <span class="text-primary-500">Contato</span>
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        Pronto para transformar sua ideia em realidade? Vamos conversar sobre seu projeto.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+      <div class="animate-slide-in-left">
+        <h3 class="text-2xl font-bold text-dark-900 dark:text-white mb-8">Vamos trabalhar juntos</h3>
+
+        <div class="space-y-6">
+          <div class="flex items-center">
+            <div class="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-dark-900 dark:text-white">Email</h4>
+              <p class="text-gray-600 dark:text-gray-300">contato@dhb.dev.br</p>
+            </div>
+          </div>
+
+          <div class="flex items-center">
+            <div class="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-dark-900 dark:text-white">WhatsApp</h4>
+              <p class="text-gray-600 dark:text-gray-300">(31) 98503-4409</p>
+            </div>
+          </div>
+
+          <div class="flex items-center">
+            <div class="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-dark-900 dark:text-white">LinkedIn</h4>
+              <p class="text-gray-600 dark:text-gray-300">linkedin.com/company/dhb-consultoria</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <h4 class="font-semibold text-dark-900 dark:text-white mb-4">Horário de Atendimento</h4>
+          <p class="text-gray-600 dark:text-gray-300">Segunda a Sexta: 9h às 18h</p>
+          <p class="text-gray-600 dark:text-gray-300">Resposta em até 24 horas</p>
+        </div>
+      </div>
+
+      <div class="animate-slide-in-right">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="bg-white dark:bg-dark-900 p-8 rounded-2xl shadow-xl">
+          <div class="space-y-6">
+            <div>
+              <label class="block text-sm font-semibold text-dark-900 dark:text-white mb-2">
+                Tipo de Projeto *
+              </label>
+              <select formControlName="projectType" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-dark-800 dark:text-white transition-all">
+                <option value="">Selecione o tipo de projeto</option>
+                <option value="website">Website Institucional</option>
+                <option value="ecommerce">E-commerce</option>
+                <option value="dashboard">Dashboard/Admin</option>
+                <option value="app">Aplicação Web</option>
+                <option value="consultoria">Consultoria Técnica</option>
+                <option value="outros">Outros</option>
+              </select>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold text-dark-900 dark:text-white mb-2">
+                  Nome *
+                </label>
+                <input
+                  type="text"
+                  formControlName="name"
+                  class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-dark-800 dark:text-white transition-all"
+                  placeholder="Seu nome">
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-dark-900 dark:text-white mb-2">
+                  Email *
+                </label>
+                <input
+                  type="email"
+                  formControlName="email"
+                  class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-dark-800 dark:text-white transition-all"
+                  placeholder="seu@email.com">
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold text-dark-900 dark:text-white mb-2">
+                  Telefone
+                </label>
+                <input
+                  type="tel"
+                  formControlName="phone"
+                  class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-dark-800 dark:text-white transition-all"
+                  placeholder="(11) 99999-9999">
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-dark-900 dark:text-white mb-2">
+                  Empresa
+                </label>
+                <input
+                  type="text"
+                  formControlName="company"
+                  class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-dark-800 dark:text-white transition-all"
+                  placeholder="Nome da empresa">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-dark-900 dark:text-white mb-2">
+                Mensagem *
+              </label>
+              <textarea
+                formControlName="message"
+                rows="4"
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-dark-800 dark:text-white transition-all resize-none"
+                placeholder="Descreva seu projeto..."></textarea>
+            </div>
+
+            <div class="flex items-start">
+              <input
+                type="checkbox"
+                formControlName="privacy"
+                class="mt-1 mr-3 w-4 h-4 text-primary-500 focus:ring-primary-500 border-gray-300 rounded">
+              <label class="text-sm text-gray-600 dark:text-gray-300">
+                Concordo com o tratamento dos meus dados pessoais de acordo com a LGPD *
+              </label>
+            </div>
+
+            <button
+              type="submit"
+              [disabled]="!contactForm.valid"
+              class="w-full bg-primary-500 hover:bg-primary-600 disabled:bg-gray-400 text-white font-semibold py-4 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:transform-none disabled:cursor-not-allowed">
+              Enviar Mensagem
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

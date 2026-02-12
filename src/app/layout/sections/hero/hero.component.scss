@@ -1,0 +1,62 @@
+:host {
+  display: block;
+}
+
+/* Logo Hero Styles */
+.hero-logo {
+  transition: all 0.3s ease;
+  animation: logoEnter 1s ease-out forwards;
+}
+
+.hero-logo:hover {
+  transform: scale(1.05);
+}
+
+/* Inversão de cor no modo escuro usando filter */
+:host-context(.dark) .hero-logo,
+.dark .hero-logo,
+html.dark .hero-logo {
+  filter: invert(1) brightness(1);
+}
+
+@keyframes logoEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Hero Section Animations */
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

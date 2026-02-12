@@ -1,0 +1,228 @@
+<!-- Termos de Uso Page -->
+<div class="min-h-screen bg-gradient-ateliware-light dark:bg-gradient-ateliware">
+  <!-- Header -->
+  <header class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-gray-200 dark:border-slate-700/50 sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <img
+            src="/assets/images/DHB-logo.svg"
+            alt="DHB Frontend Solutions"
+            class="h-8 md:h-10 w-auto logo"
+          >
+        </div>
+        <button
+          (click)="goBack()"
+          class="text-gray-600 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors duration-200"
+        >
+          ← Voltar ao site
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-6 py-12">
+    <div class="max-w-4xl mx-auto">
+      <!-- Introduction -->
+      <div class="bg-white dark:bg-slate-800/50 rounded-2xl p-8 shadow-lg mb-8">
+        <h2 class="text-3xl font-bold text-dark-900 dark:text-white mb-6 font-poppins">
+          Termos de <span class="text-primary-500">Uso</span>
+        </h2>
+        <p class="text-gray-700 dark:text-gray-200 text-lg leading-relaxed mb-4">
+          Bem-vindo à DHB! Estes Termos de Uso regem o uso de nosso website e serviços.
+          Ao acessar ou usar nossos serviços, você concorda com estes termos.
+        </p>
+        <p class="text-sm text-gray-600 dark:text-gray-400">
+          <strong>Última atualização:</strong> 22 de outubro de 2025
+        </p>
+      </div>
+
+      <!-- Sections -->
+      <div class="space-y-8">
+        <!-- 1. Aceitação dos Termos -->
+        <section class="bg-white dark:bg-slate-800/50 rounded-2xl p-8 shadow-lg">
+          <h3 class="text-2xl font-bold text-dark-900 dark:text-white mb-4">1. Aceitação dos Termos</h3>
+          <div class="text-gray-700 dark:text-gray-200 space-y-3">
+            <p>
+              Ao acessar e usar este website, você aceita e concorda em ficar vinculado aos
+              termos e condições deste acordo. Se você não concorda com algum destes termos,
+              não deve usar este website ou nossos serviços.
+            </p>
+            <p>
+              Estes termos se aplicam a todos os visitantes, usuários e outras pessoas que
+              acessam ou usam nossos serviços.
+            </p>
+          </div>
+        </section>
+
+        <!-- 2. Descrição dos Serviços -->
+        <section class="bg-white dark:bg-slate-800/50 rounded-2xl p-8 shadow-lg">
+          <h3 class="text-2xl font-bold text-dark-900 dark:text-white mb-4">2. Descrição dos Serviços</h3>
+          <div class="text-gray-700 dark:text-gray-200 space-y-3">
+            <p>A DHB oferece serviços de desenvolvimento frontend, incluindo:</p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+              <li>Desenvolvimento de aplicações web com Angular, React e Vue.js</li>
+              <li>Design de interfaces UI/UX</li>
+              <li>Consultoria técnica e arquitetura de software</li>
+              <li>Hospedagem e deploy de aplicações</li>
+              <li>Code review e otimização de performance</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 3. Uso Aceitável -->
+        <section class="bg-white dark:bg-slate-800/50 rounded-2xl p-8 shadow-lg">
+          <h3 class="text-2xl font-bold text-dark-900 dark:text-white mb-4">3. Uso Aceitável</h3>
+          <div class="text-gray-700 dark:text-gray-200 space-y-3">
+            <p>Você concorda em não usar nossos serviços para:</p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+              <li>Atividades ilegais ou não autorizadas</li>
+              <li>Violar direitos de propriedade intelectual</li>
+              <li>Transmitir vírus, malware ou código malicioso</li>
+              <li>Fazer engenharia reversa de nossos serviços</li>
+              <li>Interferir no funcionamento normal dos serviços</li>
+              <li>Coletar informações de outros usuários sem autorização</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 4. Propriedade Intelectual -->
+        <section class="bg-white dark:bg-slate-800/50 rounded-2xl p-8 shadow-lg">
+          <h3 class="text-2xl font-bold text-dark-900 dark:text-white mb-4">4. Propriedade Intelectual</h3>
+          <div class="text-gray-700 dark:text-gray-200 space-y-3">
+            <p>
+              O conteúdo, layout, design, dados, bancos de dados e gráficos neste website
+              são protegidos por direitos autorais, marcas registradas e outras leis de
+              propriedade intelectual.
+            </p>
+            <p><strong>Código desenvolvido para clientes:</strong></p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+              <li>O código fonte desenvolvido especificamente para o cliente pertence ao cliente</li>
+              <li>Bibliotecas e frameworks de terceiros mantêm suas licenças originais</li>
+              <li>Componentes reutilizáveis criados pela DHB podem ser usados em outros projetos</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 5. Responsabilidades do Cliente -->
+        <section class="bg-white dark:bg-slate-800/50 rounded-2xl p-8 shadow-lg">
+          <h3 class="text-2xl font-bold text-dark-900 dark:text-white mb-4">5. Responsabilidades do Cliente</h3>
+          <div class="text-gray-700 dark:text-gray-200 space-y-3">
+            <p>O cliente é responsável por:</p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+              <li>Fornecer informações precisas e completas sobre o projeto</li>
+              <li>Disponibilizar recursos necessários (acessos, credenciais, assets)</li>
+              <li>Fazer backup regular dos dados e sistemas</li>
+              <li>Cumprir os prazos de feedback e aprovações</li>
+              <li>Garantir que o conteúdo fornecido não infringe direitos de terceiros</li>
+              <li>Efetuar pagamentos conforme acordado</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 6. Limitação de Responsabilidade -->
+        <section class="bg-white dark:bg-slate-800/50 rounded-2xl p-8 shadow-lg">
+          <h3 class="text-2xl font-bold text-dark-900 dark:text-white mb-4">6. Limitação de Responsabilidade</h3>
+          <div class="text-gray-700 dark:text-gray-200 space-y-3">
+            <p>
+              A DHB não será responsável por danos indiretos, incidentais, especiais,
+              consequenciais ou punitivos, incluindo, mas não limitado a:
+            </p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+              <li>Perda de lucros ou receitas</li>
+              <li>Perda de dados ou informações</li>
+              <li>Interrupção de negócios</li>
+              <li>Falhas de terceiros (provedores de hospedagem, APIs externas)</li>
+            </ul>
+            <p class="mt-3">
+              Nossa responsabilidade total não excederá o valor pago pelos serviços no período de 12 meses.
+            </p>
+          </div>
+        </section>
+
+        <!-- 7. Pagamentos e Cancelamentos -->
+        <section class="bg-white dark:bg-slate-800/50 rounded-2xl p-8 shadow-lg">
+          <h3 class="text-2xl font-bold text-dark-900 dark:text-white mb-4">7. Pagamentos e Cancelamentos</h3>
+          <div class="text-gray-700 dark:text-gray-200 space-y-3">
+            <p><strong>Pagamentos:</strong></p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+              <li>Os valores e formas de pagamento são definidos em proposta específica</li>
+              <li>Pagamentos em atraso podem resultar na suspensão dos serviços</li>
+              <li>Valores em PIX recebem desconto conforme tabela de preços</li>
+            </ul>
+
+            <p class="mt-4"><strong>Cancelamentos:</strong></p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+              <li>Qualquer das partes pode cancelar com aviso prévio de 30 dias</li>
+              <li>Trabalho já executado será cobrado proporcionalmente</li>
+              <li>Arquivos e código serão entregues até 30 dias após o cancelamento</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 8. Confidencialidade -->
+        <section class="bg-white dark:bg-slate-800/50 rounded-2xl p-8 shadow-lg">
+          <h3 class="text-2xl font-bold text-dark-900 dark:text-white mb-4">8. Confidencialidade</h3>
+          <div class="text-gray-700 dark:text-gray-200 space-y-3">
+            <p>
+              A DHB se compromete a manter em sigilo todas as informações confidenciais
+              recebidas do cliente, incluindo:
+            </p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+              <li>Estratégias de negócio e planos futuros</li>
+              <li>Dados técnicos e de sistema</li>
+              <li>Informações financeiras</li>
+              <li>Base de dados de clientes</li>
+              <li>Qualquer informação marcada como confidencial</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 9. Modificações dos Termos -->
+        <section class="bg-white dark:bg-slate-800/50 rounded-2xl p-8 shadow-lg">
+          <h3 class="text-2xl font-bold text-dark-900 dark:text-white mb-4">9. Modificações dos Termos</h3>
+          <div class="text-gray-700 dark:text-gray-200 space-y-3">
+            <p>
+              Reservamo-nos o direito de modificar estes termos a qualquer momento.
+              Mudanças significativas serão comunicadas por e-mail ou através do website.
+            </p>
+            <p>
+              O uso continuado dos nossos serviços após as modificações constitui
+              aceitação dos novos termos.
+            </p>
+          </div>
+        </section>
+
+        <!-- 10. Lei Aplicável -->
+        <section class="bg-white dark:bg-slate-800/50 rounded-2xl p-8 shadow-lg">
+          <h3 class="text-2xl font-bold text-dark-900 dark:text-white mb-4">10. Lei Aplicável e Foro</h3>
+          <div class="text-gray-700 dark:text-gray-200 space-y-3">
+            <p>
+              Estes Termos de Uso são regidos pelas leis brasileiras. Qualquer disputa
+              será resolvida nos tribunais da comarca de São Paulo, SP.
+            </p>
+            <p>
+              As partes se comprometem a tentar resolver disputas amigavelmente antes
+              de recorrer a procedimentos judiciais.
+            </p>
+          </div>
+        </section>
+
+        <!-- 11. Contato -->
+        <section class="bg-white dark:bg-slate-800/50 rounded-2xl p-8 shadow-lg">
+          <h3 class="text-2xl font-bold text-dark-900 dark:text-white mb-4">11. Contato</h3>
+          <div class="text-gray-700 dark:text-gray-200 space-y-3">
+            <p>Para questões sobre estes Termos de Uso:</p>
+            <div class="bg-gray-50 dark:bg-slate-700/50 p-4 rounded-lg">
+              <p><strong>E-mail:</strong> contato@dhb.dev.br</p>
+              <p><strong>WhatsApp:</strong> (11) 99999-9999</p>
+              <p><strong>Empresa:</strong> DHB Soluções Tecnológicas</p>
+              <p><strong>Website:</strong> https://dhb.dev.br</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>

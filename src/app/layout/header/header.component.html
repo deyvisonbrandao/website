@@ -1,0 +1,188 @@
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-gray-200 dark:border-slate-700/50 transition-all duration-300 shadow-sm dark:shadow-slate-900/20">
+  <nav class="container mx-auto px-6">
+    <div class="flex items-center justify-between h-20 md:h-24">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a href="#" class="flex items-center">
+          <!-- Logo única com alternância de cor via CSS -->
+          <img
+            src="/assets/images/DHB-logo.svg"
+            alt="DHB Frontend Solutions"
+            class="h-12 md:h-16 w-auto logo"
+          >
+        </a>
+      </div>
+
+      <!-- Desktop Navigation & Theme Toggle -->
+      <div class="hidden md:flex items-center space-x-6">
+        <!-- Navigation Links -->
+        <div class="flex items-center space-x-6">
+          <a
+            href="#"
+            class="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 font-medium transition-colors duration-200"
+          >
+            Início
+          </a>
+          <a
+            (click)="scrollToSection('servicos')"
+            class="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 font-medium transition-colors duration-200 cursor-pointer"
+          >
+            Serviços
+          </a>
+          <a
+            (click)="scrollToSection('tecnologias')"
+            class="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 font-medium transition-colors duration-200 cursor-pointer"
+          >
+            Tecnologias
+          </a>
+          <a
+            (click)="scrollToSection('diferenciais')"
+            class="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 font-medium transition-colors duration-200 cursor-pointer"
+          >
+            Diferenciais
+          </a>
+          <a
+            (click)="scrollToSection('portfolio')"
+            class="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 font-medium transition-colors duration-200 cursor-pointer"
+          >
+            Portfólio
+          </a>
+          <a
+            (click)="scrollToSection('contato')"
+            class="bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 cursor-pointer"
+          >
+            Contato
+          </a>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button
+          (click)="toggleTheme()"
+          class="p-2 rounded-lg bg-gray-100 dark:bg-dark-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-dark-700 transition-colors duration-200"
+          aria-label="Toggle theme"
+        >
+          <svg
+            *ngIf="!isDarkMode"
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
+          <svg
+            *ngIf="isDarkMode"
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile: Theme Toggle & Menu Button -->
+      <div class="md:hidden flex items-center space-x-3">
+        <!-- Theme Toggle -->
+        <button
+          (click)="toggleTheme()"
+          class="p-2 rounded-lg bg-gray-100 dark:bg-dark-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-dark-700 transition-colors duration-200"
+          aria-label="Toggle theme"
+        >
+          <svg
+            *ngIf="!isDarkMode"
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
+          <svg
+            *ngIf="isDarkMode"
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+          </svg>
+        </button>
+
+        <!-- Mobile menu button -->
+        <button
+          (click)="toggleMobileMenu()"
+          class="p-2 rounded-lg bg-gray-100 dark:bg-dark-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-dark-700 transition-colors duration-200"
+          aria-label="Toggle menu"
+        >
+          <svg
+            *ngIf="!isMobileMenuOpen"
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <svg
+            *ngIf="isMobileMenuOpen"
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div
+      class="md:hidden overflow-hidden transition-all duration-300 ease-in-out"
+      [class.max-h-0]="!isMobileMenuOpen"
+      [class.max-h-screen]="isMobileMenuOpen"
+    >
+      <div class="py-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
+        <a
+          href="#"
+          class="block px-3 py-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-dark-800 font-medium transition-colors duration-200"
+          (click)="closeMobileMenu()"
+        >
+          Início
+        </a>
+        <a
+          (click)="scrollToSection('servicos'); closeMobileMenu()"
+          class="block px-3 py-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-dark-800 font-medium transition-colors duration-200 cursor-pointer"
+        >
+          Serviços
+        </a>
+        <a
+          (click)="scrollToSection('tecnologias'); closeMobileMenu()"
+          class="block px-3 py-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-dark-800 font-medium transition-colors duration-200 cursor-pointer"
+        >
+          Tecnologias
+        </a>
+        <a
+          (click)="scrollToSection('diferenciais'); closeMobileMenu()"
+          class="block px-3 py-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-dark-800 font-medium transition-colors duration-200 cursor-pointer"
+        >
+          Diferenciais
+        </a>
+        <a
+          (click)="scrollToSection('portfolio'); closeMobileMenu()"
+          class="block px-3 py-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-dark-800 font-medium transition-colors duration-200 cursor-pointer"
+        >
+          Portfólio
+        </a>
+        <a
+          (click)="scrollToSection('contato'); closeMobileMenu()"
+          class="block px-3 py-2 rounded-md bg-primary-500 text-white hover:bg-primary-600 font-semibold transition-colors duration-200 cursor-pointer"
+        >
+          Contato
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>

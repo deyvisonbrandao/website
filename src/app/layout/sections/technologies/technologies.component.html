@@ -1,0 +1,27 @@
+<!-- Tecnologias Section -->
+<section id="tecnologias" class="py-12 bg-gray-50 dark:bg-gradient-to-br dark:from-slate-900 dark:to-slate-800 relative overflow-hidden">
+  <div class="container mx-auto px-6 relative z-10">
+    <!-- Título da seção -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl lg:text-4xl font-bold text-dark-900 dark:text-white mb-4 font-poppins">
+        Nossas <span class="text-primary-500">Tecnologias</span>
+      </h2>
+      <p class="text-lg text-gray-600 dark:text-gray-200 max-w-2xl mx-auto">
+        Ferramentas modernas e confiáveis que utilizamos para criar soluções de qualidade
+      </p>
+    </div>
+
+    <!-- Grid de logos das tecnologias -->
+    <div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-10 gap-8 items-center justify-items-center">
+      <div *ngFor="let tech of technologies"
+           class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center transition-all duration-300 hover:scale-110 opacity-70 hover:opacity-100">
+        <img
+          [src]="tech.logo"
+          [alt]="tech.name + ' logo'"
+          class="w-full h-full object-contain"
+          [title]="tech.name"
+        />
+      </div>
+    </div>
+  </div>
+</section>

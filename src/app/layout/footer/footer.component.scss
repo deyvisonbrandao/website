@@ -1,0 +1,53 @@
+footer {
+  background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+}
+
+/* Estilos para logo no footer */
+.footer-logo {
+  transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+  filter: invert(1) brightness(1); /* Sempre branca no footer */
+}
+
+.footer-logo:hover {
+  transform: scale(1.05);
+  filter: invert(1) brightness(1.1);
+}
+
+footer svg {
+  transition: transform 0.2s ease;
+}
+
+footer svg:hover {
+  transform: scale(1.1);
+}
+
+footer a {
+  position: relative;
+}
+
+footer a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: #ef4444;
+  transition: width 0.3s ease;
+}
+
+footer a:hover::after {
+  width: 100%;
+}
+
+footer .social-link {
+  background: rgba(239, 68, 68, 0.1);
+  border-radius: 50%;
+  padding: 8px;
+  transition: all 0.3s ease;
+}
+
+footer .social-link:hover {
+  background: rgba(239, 68, 68, 0.2);
+  transform: translateY(-2px);
+}

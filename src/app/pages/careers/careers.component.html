@@ -1,0 +1,293 @@
+<!-- Trabalhe Conosco Page -->
+<div class="min-h-screen bg-gradient-ateliware-light dark:bg-gradient-ateliware">
+  <!-- Header -->
+  <header class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-gray-200 dark:border-slate-700/50 sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <img
+            src="/assets/images/DHB-logo.svg"
+            alt="DHB Frontend Solutions"
+            class="h-8 md:h-10 w-auto logo"
+          >
+        </div>
+        <button
+          (click)="goBack()"
+          class="text-gray-600 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors duration-200"
+        >
+          ← Voltar ao site
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-6 py-12">
+    <!-- Success Message -->
+    <div *ngIf="showSuccess" class="mb-8 p-6 bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700 rounded-lg">
+      <div class="flex items-center">
+        <svg class="w-6 h-6 text-green-600 dark:text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+        </svg>
+        <div>
+          <h3 class="text-lg font-semibold text-green-800 dark:text-green-200">Currículo enviado com sucesso!</h3>
+          <p class="text-green-700 dark:text-green-300">Entraremos em contato em breve. Obrigado pelo interesse em fazer parte da nossa equipe!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12">
+      <!-- Left Column - Info -->
+      <div class="space-y-8">
+        <div>
+          <h2 class="text-4xl font-bold text-dark-900 dark:text-white mb-6 font-poppins">
+            Faça Parte da Nossa <span class="text-primary-500">Equipe</span>
+          </h2>
+          <p class="text-xl text-gray-700 dark:text-gray-200 mb-6 leading-relaxed">
+            Estamos sempre em busca de talentos apaixonados por tecnologia e inovação.
+            Junte-se a nós e ajude a criar soluções digitais que fazem a diferença.
+          </p>
+        </div>
+
+        <!-- Benefícios -->
+        <div class="bg-white dark:bg-slate-800/50 rounded-2xl p-8 shadow-lg">
+          <h3 class="text-2xl font-bold text-dark-900 dark:text-white mb-6">Por que trabalhar na DHB?</h3>
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <svg class="w-6 h-6 text-primary-500 mr-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-gray-700 dark:text-gray-200">Trabalho 100% remoto</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-6 h-6 text-primary-500 mr-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-gray-700 dark:text-gray-200">Flexibilidade de horários</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-6 h-6 text-primary-500 mr-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-gray-700 dark:text-gray-200">Projetos com tecnologias modernas</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-6 h-6 text-primary-500 mr-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-gray-700 dark:text-gray-200">Ambiente colaborativo e inovador</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-6 h-6 text-primary-500 mr-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-gray-700 dark:text-gray-200">Oportunidades de crescimento</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Áreas de Atuação -->
+        <div class="bg-white dark:bg-slate-800/50 rounded-2xl p-8 shadow-lg">
+          <h3 class="text-2xl font-bold text-dark-900 dark:text-white mb-6">Áreas que Contratamos</h3>
+          <div class="grid grid-cols-2 gap-4">
+            <div *ngFor="let specialty of specialties" class="text-gray-700 dark:text-gray-200">
+              • {{ specialty.label }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column - Form -->
+      <div class="bg-white dark:bg-slate-800/50 rounded-2xl p-8 shadow-xl">
+        <h3 class="text-2xl font-bold text-dark-900 dark:text-white mb-6">Envie seu Currículo</h3>
+
+        <form [formGroup]="careersForm" (ngSubmit)="onSubmit()" class="space-y-6">
+          <!-- Nome -->
+          <div>
+            <label for="nome" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+              Nome Completo *
+            </label>
+            <input
+              type="text"
+              id="nome"
+              formControlName="nome"
+              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
+              placeholder="Seu nome completo"
+            >
+            <div *ngIf="isFieldInvalid('nome')" class="mt-1 text-sm text-red-600 dark:text-red-400">
+              Nome é obrigatório (mínimo 2 caracteres)
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+              E-mail *
+            </label>
+            <input
+              type="email"
+              id="email"
+              formControlName="email"
+              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
+              placeholder="seu@email.com"
+            >
+            <div *ngIf="isFieldInvalid('email')" class="mt-1 text-sm text-red-600 dark:text-red-400">
+              E-mail válido é obrigatório
+            </div>
+          </div>
+
+          <!-- Telefone -->
+          <div>
+            <label for="telefone" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+              Telefone *
+            </label>
+            <input
+              type="tel"
+              id="telefone"
+              formControlName="telefone"
+              (input)="formatPhone($event)"
+              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
+              placeholder="(11) 99999-9999"
+            >
+            <div *ngIf="isFieldInvalid('telefone')" class="mt-1 text-sm text-red-600 dark:text-red-400">
+              Telefone é obrigatório (formato: (11) 99999-9999)
+            </div>
+          </div>
+
+          <!-- Especialidade -->
+          <div>
+            <label for="especialidade" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+              Especialidade *
+            </label>
+            <select
+              id="especialidade"
+              formControlName="especialidade"
+              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
+            >
+              <option value="">Selecione sua especialidade</option>
+              <option *ngFor="let specialty of specialties" [value]="specialty.value">
+                {{ specialty.label }}
+              </option>
+            </select>
+            <div *ngIf="isFieldInvalid('especialidade')" class="mt-1 text-sm text-red-600 dark:text-red-400">
+              Especialidade é obrigatória
+            </div>
+          </div>
+
+          <!-- Experiência -->
+          <div>
+            <label for="experiencia" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+              Experiência *
+            </label>
+            <select
+              id="experiencia"
+              formControlName="experiencia"
+              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
+            >
+              <option value="">Selecione sua experiência</option>
+              <option value="junior">Júnior (0-2 anos)</option>
+              <option value="pleno">Pleno (2-5 anos)</option>
+              <option value="senior">Sênior (5+ anos)</option>
+              <option value="lead">Tech Lead/Especialista</option>
+            </select>
+            <div *ngIf="isFieldInvalid('experiencia')" class="mt-1 text-sm text-red-600 dark:text-red-400">
+              Nível de experiência é obrigatório
+            </div>
+          </div>
+
+          <!-- LinkedIn -->
+          <div>
+            <label for="linkedin" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+              LinkedIn
+            </label>
+            <input
+              type="url"
+              id="linkedin"
+              formControlName="linkedin"
+              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
+              placeholder="https://linkedin.com/in/seuperfil"
+            >
+          </div>
+
+          <!-- GitHub -->
+          <div>
+            <label for="github" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+              GitHub
+            </label>
+            <input
+              type="url"
+              id="github"
+              formControlName="github"
+              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
+              placeholder="https://github.com/seuusuario"
+            >
+          </div>
+
+          <!-- Portfolio -->
+          <div>
+            <label for="portfolio" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+              Portfolio
+            </label>
+            <input
+              type="url"
+              id="portfolio"
+              formControlName="portfolio"
+              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
+              placeholder="https://seuportfolio.com"
+            >
+          </div>
+
+          <!-- Currículo PDF -->
+          <div>
+            <label for="curriculo" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+              Currículo (PDF) *
+            </label>
+            <input
+              type="file"
+              id="curriculo"
+              accept=".pdf"
+              (change)="onFileSelected($event)"
+              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-700 text-gray-900 dark:text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:bg-primary-500 file:text-white hover:file:bg-primary-600"
+            >
+            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+              Arquivo PDF, máximo 5MB
+            </p>
+            <div *ngIf="selectedFile" class="mt-2 text-sm text-green-600 dark:text-green-400">
+              ✓ {{ selectedFile.name }} selecionado
+            </div>
+          </div>
+
+          <!-- Mensagem -->
+          <div>
+            <label for="mensagem" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+              Mensagem Adicional
+            </label>
+            <textarea
+              id="mensagem"
+              formControlName="mensagem"
+              rows="4"
+              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
+              placeholder="Conte-nos um pouco sobre você e por que quer trabalhar na DHB..."
+            ></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            [disabled]="!careersForm.valid || !selectedFile || isSubmitting"
+            class="w-full bg-primary-500 hover:bg-primary-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:hover:scale-100"
+          >
+            <span *ngIf="!isSubmitting">Enviar Currículo</span>
+            <span *ngIf="isSubmitting" class="flex items-center justify-center">
+              <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Enviando...
+            </span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>

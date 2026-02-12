@@ -1,0 +1,186 @@
+/* Cookie Banner Styles */
+.cookie-banner {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  /* Animação de entrada */
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Cookie Modal Styles */
+.cookie-modal {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.cookie-modal > div {
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    transform: scale(0.95) translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Cookie Category Styles */
+.cookie-category {
+  transition: all 0.2s ease;
+}
+
+.cookie-category:hover {
+  border-color: #ef4444;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.1);
+}
+
+/* Checkbox Styles */
+input[type="checkbox"] {
+  transition: all 0.2s ease;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #ef4444;
+  border-color: #ef4444;
+}
+
+input[type="checkbox"]:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* Floating Settings Button */
+.cookie-settings-btn {
+  animation: floatIn 0.3s ease-out;
+}
+
+@keyframes floatIn {
+  from {
+    transform: translateY(100px) scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.cookie-settings-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 640px) {
+  .cookie-banner {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .flex-col {
+      gap: 1rem;
+    }
+  }
+
+  .cookie-modal > div {
+    margin: 1rem;
+    max-height: calc(100vh - 2rem);
+  }
+
+  .cookie-settings-btn {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.75rem;
+  }
+}
+
+/* Dark Mode Specific Styles */
+.dark {
+  .cookie-banner {
+    background: rgba(15, 23, 42, 0.95);
+    border-color: rgba(55, 65, 81, 0.8);
+  }
+
+  .cookie-modal {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .cookie-category:hover {
+    border-color: #ef4444;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .cookie-banner {
+    border: 2px solid currentColor;
+  }
+
+  .cookie-category {
+    border-width: 2px;
+  }
+
+  button {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .cookie-banner,
+  .cookie-modal,
+  .cookie-modal > div,
+  .cookie-settings-btn {
+    animation: none;
+  }
+
+  .cookie-category,
+  input[type="checkbox"],
+  button {
+    transition: none;
+  }
+}
+
+/* Focus Visible Support */
+@supports selector(:focus-visible) {
+  button:focus {
+    outline: none;
+  }
+
+  button:focus-visible {
+    outline: 2px solid #ef4444;
+    outline-offset: 2px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .cookie-banner,
+  .cookie-modal,
+  .cookie-settings-btn {
+    display: none !important;
+  }
+}

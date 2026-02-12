@@ -1,0 +1,261 @@
+<!-- Cookie Consent Banner -->
+<div
+  *ngIf="showBanner"
+  class="cookie-banner fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-dark-900 border-t border-gray-200 dark:border-gray-700 shadow-lg transition-transform duration-300 transform translate-y-0"
+  role="dialog"
+  aria-labelledby="cookie-banner-title"
+  aria-describedby="cookie-banner-description"
+>
+  <div class="container mx-auto px-4 py-6">
+    <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+      <!-- Cookie Information -->
+      <div class="flex-1">
+        <h3
+          id="cookie-banner-title"
+          class="text-lg font-semibold text-dark-900 dark:text-white mb-2"
+        >
+          🍪 Consentimento de Cookies
+        </h3>
+        <p
+          id="cookie-banner-description"
+          class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed"
+        >
+          Utilizamos cookies para melhorar sua experiência em nosso site, personalizar conteúdo,
+          analisar tráfego e oferecer funcionalidades de redes sociais. Ao continuar navegando, você
+          concorda com nossa
+          <a href="/politica-privacidade" class="text-primary-500 hover:text-primary-600 underline">
+            Política de Privacidade
+          </a>
+          e
+          <a href="/termos-uso" class="text-primary-500 hover:text-primary-600 underline">
+            Termos de Uso </a
+          >.
+        </p>
+      </div>
+
+      <!-- Cookie Actions -->
+      <div class="flex flex-col sm:flex-row gap-3 min-w-max">
+        <button
+          (click)="openPreferences()"
+          class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+        >
+          Preferências
+        </button>
+
+        <button
+          (click)="acceptNecessary()"
+          class="px-4 py-2 text-sm font-medium text-dark-900 dark:text-white bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+        >
+          Apenas Necessários
+        </button>
+
+        <button
+          (click)="acceptAll()"
+          class="px-6 py-2 text-sm font-medium text-white bg-primary-500 hover:bg-primary-600 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 shadow-md hover:shadow-lg"
+        >
+          Aceitar Todos
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie Preferences Modal -->
+<div
+  *ngIf="showPreferences"
+  class="cookie-modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
+  role="dialog"
+  aria-labelledby="preferences-title"
+  aria-modal="true"
+  (click)="closePreferences()"
+>
+  <div
+    class="bg-white dark:bg-dark-900 rounded-2xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden"
+    (click)="$event.stopPropagation()"
+  >
+    <!-- Modal Header -->
+    <div class="border-b border-gray-200 dark:border-gray-700 px-6 py-4">
+      <div class="flex items-center justify-between">
+        <h2 id="preferences-title" class="text-2xl font-bold text-dark-900 dark:text-white">
+          🍪 Configurações de Cookies
+        </h2>
+        <button
+          (click)="closePreferences()"
+          class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500"
+          aria-label="Fechar preferências"
+        >
+          <svg
+            class="w-6 h-6 text-gray-600 dark:text-gray-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal Content -->
+    <div class="p-6 overflow-y-auto max-h-96">
+      <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+        Escolha quais tipos de cookies você deseja permitir. Você pode alterar essas configurações a
+        qualquer momento.
+      </p>
+
+      <!-- Cookie Categories -->
+      <div class="space-y-6">
+        <!-- Necessary Cookies -->
+        <div class="cookie-category border border-gray-200 dark:border-gray-700 rounded-xl p-4">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center">
+              <span class="text-2xl mr-3">🔒</span>
+              <h3 class="text-lg font-semibold text-dark-900 dark:text-white">
+                Cookies Necessários
+              </h3>
+            </div>
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                id="necessary"
+                [(ngModel)]="preferences.necessary"
+                disabled
+                class="w-5 h-5 text-primary-500 border-gray-300 rounded focus:ring-primary-500 focus:ring-2 opacity-50 cursor-not-allowed"
+              />
+              <label for="necessary" class="ml-2 text-sm text-gray-500 dark:text-gray-400"
+                >Sempre ativo</label
+              >
+            </div>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            Essenciais para o funcionamento básico do site. Incluem cookies de sessão, autenticação
+            e preferências de acessibilidade.
+          </p>
+        </div>
+
+        <!-- Analytics Cookies -->
+        <div class="cookie-category border border-gray-200 dark:border-gray-700 rounded-xl p-4">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center">
+              <span class="text-2xl mr-3">📊</span>
+              <h3 class="text-lg font-semibold text-dark-900 dark:text-white">
+                Cookies de Análise
+              </h3>
+            </div>
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                id="analytics"
+                [(ngModel)]="preferences.analytics"
+                class="w-5 h-5 text-primary-500 border-gray-300 rounded focus:ring-primary-500 focus:ring-2"
+              />
+              <label for="analytics" class="ml-2 text-sm text-gray-700 dark:text-gray-300">
+                {{ preferences.analytics ? 'Ativado' : 'Desativado' }}
+              </label>
+            </div>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            Nos ajudam a entender como os visitantes interagem com o site, coletando informações de
+            forma anônima para melhorar a experiência.
+          </p>
+        </div>
+
+        <!-- Marketing Cookies -->
+        <div class="cookie-category border border-gray-200 dark:border-gray-700 rounded-xl p-4">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center">
+              <span class="text-2xl mr-3">🎯</span>
+              <h3 class="text-lg font-semibold text-dark-900 dark:text-white">
+                Cookies de Marketing
+              </h3>
+            </div>
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                id="marketing"
+                [(ngModel)]="preferences.marketing"
+                class="w-5 h-5 text-primary-500 border-gray-300 rounded focus:ring-primary-500 focus:ring-2"
+              />
+              <label for="marketing" class="ml-2 text-sm text-gray-700 dark:text-gray-300">
+                {{ preferences.marketing ? 'Ativado' : 'Desativado' }}
+              </label>
+            </div>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            Utilizados para exibir anúncios relevantes e medir a eficácia de campanhas
+            publicitárias.
+          </p>
+        </div>
+
+        <!-- Functional Cookies -->
+        <div class="cookie-category border border-gray-200 dark:border-gray-700 rounded-xl p-4">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center">
+              <span class="text-2xl mr-3">⚡</span>
+              <h3 class="text-lg font-semibold text-dark-900 dark:text-white">
+                Cookies Funcionais
+              </h3>
+            </div>
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                id="functional"
+                [(ngModel)]="preferences.functional"
+                class="w-5 h-5 text-primary-500 border-gray-300 rounded focus:ring-primary-500 focus:ring-2"
+              />
+              <label for="functional" class="ml-2 text-sm text-gray-700 dark:text-gray-300">
+                {{ preferences.functional ? 'Ativado' : 'Desativado' }}
+              </label>
+            </div>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            Habilitam funcionalidades aprimoradas como chat, mapas e integração com redes sociais.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="border-t border-gray-200 dark:border-gray-700 px-6 py-4">
+      <div class="flex flex-col sm:flex-row gap-3 justify-end">
+        <button
+          (click)="closePreferences()"
+          class="px-6 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+        >
+          Cancelar
+        </button>
+
+        <button
+          (click)="savePreferences()"
+          class="px-6 py-2 text-sm font-medium text-white bg-primary-500 hover:bg-primary-600 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 shadow-md hover:shadow-lg"
+        >
+          💾 Salvar Preferências
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Cookie Settings Button (quando consentimento já foi dado) -->
+<button
+  *ngIf="!showBanner && !showPreferences"
+  (click)="openPreferences()"
+  class="cookie-settings-btn fixed bottom-6 right-6 p-3 bg-primary-500 hover:bg-primary-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 z-40"
+  title="Configurações de Cookies"
+  aria-label="Abrir configurações de cookies"
+>
+  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M8.65692 9.41494h.01M7.27103 13h.01m7.67737 1.9156h.01M10.9999 17h.01m3.178-10.90671c-.8316.38094-1.8475.22903-2.5322-.45571-.3652-.36522-.5789-.82462-.6409-1.30001-.0574-.44-.0189-.98879.1833-1.39423-1.99351.20001-3.93304 1.06362-5.46025 2.59083-3.51472 3.51472-3.51472 9.21323 0 12.72793 3.51471 3.5147 9.21315 3.5147 12.72795 0 1.5601-1.5602 2.4278-3.5507 2.6028-5.5894-.2108.008-.6725.0223-.8328.0157-.635.0644-1.2926-.1466-1.779-.633-.3566-.3566-.5651-.8051-.6257-1.2692-.0561-.4293.0145-.87193.2117-1.26755-.1159.20735-.2619.40237-.4381.57865-1.0283 1.0282-2.6953 1.0282-3.7235 0-1.0282-1.02824-1.0282-2.69531 0-3.72352.0977-.09777.2013-.18625.3095-.26543"
+    />
+  </svg>
+</button>
