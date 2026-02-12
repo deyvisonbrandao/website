@@ -80,7 +80,7 @@ jobs:
             # Verificar status
             docker ps | grep dhb-app
 
-      - name: Configure Nginx
+      - name: Configure Nginx (HTTP only - for Certbot)
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -88,7 +88,60 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           port: ${{ secrets.VPS_PORT || 22 }}
           script: |
-            # Criar arquivo de config nginx
+            # Criar arquivo de config nginx temporário (apenas HTTP)
+            sudo tee /etc/nginx/sites-available/dhb.dev.br > /dev/null <<'EOF'
+            server {
+                listen 80;
+                listen [::]:80;
+                server_name dhb.dev.br www.dhb.dev.br;
+
+                # Proxy settings
+                location / {
+                    proxy_pass http://localhost:4000;
+                    proxy_http_version 1.1;
+                    proxy_set_header Upgrade $http_upgrade;
+                    proxy_set_header Connection 'upgrade';
+                    proxy_set_header Host $host;
+                    proxy_set_header X-Real-IP $remote_addr;
+                    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                    proxy_set_header X-Forwarded-Proto $scheme;
+                    proxy_cache_bypass $http_upgrade;
+                }
+            }
+            EOF
+
+            # Enable site
+            sudo ln -sf /etc/nginx/sites-available/dhb.dev.br /etc/nginx/sites-enabled/
+
+            # Remover default se existir
+            sudo rm -f /etc/nginx/sites-enabled/default
+
+            # Test e reload nginx
+            sudo nginx -t && sudo systemctl reload nginx
+
+      - name: Generate SSL Certificate with Certbot
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          script: |
+            # Instalar Certbot se não existir
+            sudo apt-get update && sudo apt-get install -y certbot python3-certbot-nginx || true
+
+            # Gerar certificado (com auto-renew habilitado)
+            sudo certbot certonly --nginx -d dhb.dev.br -d www.dhb.dev.br --non-interactive --agree-tos --email admin@dhb.dev.br --redirect || true
+
+      - name: Configure Nginx (HTTPS)
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          script: |
+            # Criar arquivo de config nginx final (com HTTPS)
             sudo tee /etc/nginx/sites-available/dhb.dev.br > /dev/null <<'EOF'
             server {
                 listen 80;
@@ -141,17 +194,8 @@ jobs:
             }
             EOF
 
-            # Enable site
-            sudo ln -sf /etc/nginx/sites-available/dhb.dev.br /etc/nginx/sites-enabled/
-
-            # Remover default se existir
-            sudo rm -f /etc/nginx/sites-enabled/default
-
-            # Test nginx config
-            sudo nginx -t
-
-            # Reload nginx
-            sudo systemctl reload nginx
+            # Test e reload nginx
+            sudo nginx -t && sudo systemctl reload nginx
 
       - name: Verify Deployment
         run: |
