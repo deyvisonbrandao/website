@@ -34,6 +34,7 @@
     "dotenv": "^16.6.1",
     "express": "^5.1.0",
     "lucide-angular": "^0.546.0",
+    "ngx-mask": "^20.0.3",
     "nodemailer": "^6.9.14",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"

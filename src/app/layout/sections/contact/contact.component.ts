@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgxMaskDirective } from 'ngx-mask';
 import { AlertComponent } from '../../../shared/components/alert/alert.component';
 import { AlertService } from '../../../shared/services/alert.service';
 import { AnalyticsService } from '../../../shared/services/analytics.service';
@@ -8,7 +9,7 @@ import { AnalyticsService } from '../../../shared/services/analytics.service';
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, AlertComponent],
+  imports: [CommonModule, ReactiveFormsModule, AlertComponent, NgxMaskDirective],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
   encapsulation: ViewEncapsulation.None
