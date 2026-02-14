@@ -16,19 +16,3 @@
     transform: translateY(0);
   }
 }
-
-.portfolio-card {
-  transition: all 0.3s ease;
-}
-
-.portfolio-card:hover {
-  transform: translateY(-5px);
-}
-
-.portfolio-button {
-  transition: all 0.3s ease;
-}
-
-.group:hover .portfolio-button {
-  transform: translateY(0);
-}

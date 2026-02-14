@@ -11,41 +11,9 @@
   transform: scale(1.05);
 }
 
-/* Inversão de cor no modo escuro usando filter */
+/* Inversao de cor no modo escuro usando filter */
 :host-context(.dark) .logo,
 .dark .logo,
 html.dark .logo {
   filter: invert(1) brightness(1);
-}
-
-/* Estilos específicos do header podem ser adicionados aqui */
-.nav-link {
-  transition: color 0.2s ease-in-out;
-}
-
-.nav-link:hover {
-  color: theme('colors.primary.500');
-}
-
-/* Animações para o menu mobile */
-.mobile-menu-enter {
-  max-height: 0;
-  opacity: 0;
-}
-
-.mobile-menu-enter-active {
-  max-height: 500px;
-  opacity: 1;
-  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
-
-.mobile-menu-exit {
-  max-height: 500px;
-  opacity: 1;
-}
-
-.mobile-menu-exit-active {
-  max-height: 0;
-  opacity: 0;
-  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }

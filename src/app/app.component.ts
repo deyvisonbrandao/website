@@ -12,7 +12,6 @@ import { CookieConsentComponent } from './shared/components';
     FooterComponent,
     CookieConsentComponent
   ],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  templateUrl: './app.component.html'
 })
 export class App {}

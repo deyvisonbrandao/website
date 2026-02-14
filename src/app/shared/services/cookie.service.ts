@@ -63,7 +63,6 @@ export class CookieService {
 
     this.consentGiven.next(true);
     this.preferences.next(allAccepted);
-
     this.initializeAnalytics();
   }
 
@@ -87,7 +86,6 @@ export class CookieService {
   savePreferences(prefs: CookiePreferences): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
-    // Necessary cookies are always required
     prefs.necessary = true;
 
     localStorage.setItem(this.COOKIE_CONSENT_KEY, JSON.stringify(true));
@@ -101,79 +99,18 @@ export class CookieService {
     }
   }
 
-  hasConsent(): boolean {
-    return this.consentGiven.value;
-  }
-
-  getPreferences(): CookiePreferences {
-    return this.preferences.value;
-  }
-
   canUseAnalytics(): boolean {
     return this.preferences.value.analytics;
   }
 
-  canUseMarketing(): boolean {
-    return this.preferences.value.marketing;
-  }
-
-  canUseFunctional(): boolean {
-    return this.preferences.value.functional;
-  }
-
-  resetConsent(): void {
-    if (!isPlatformBrowser(this.platformId)) return;
-
-    localStorage.removeItem(this.COOKIE_CONSENT_KEY);
-    localStorage.removeItem(this.COOKIE_PREFERENCES_KEY);
-
-    this.consentGiven.next(false);
-    this.preferences.next({
-      necessary: true,
-      analytics: false,
-      marketing: false,
-      functional: false
-    });
-  }
-
   private initializeAnalytics(): void {
-    // Aqui você pode inicializar o Google Analytics ou outras ferramentas
     if (this.canUseAnalytics()) {
       console.log('Analytics initialized');
-      // gtag('config', 'GA_MEASUREMENT_ID');
     }
   }
 
-  // Método para definir cookies específicos
-  setCookie(name: string, value: string, days: number = 365): void {
-    if (!isPlatformBrowser(this.platformId)) return;
-
-    const expires = new Date();
-    expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
-
-    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
-  }
-
-  // Método para obter cookies específicos
-  getCookie(name: string): string | null {
-    if (!isPlatformBrowser(this.platformId)) return null;
-
-    const nameEQ = name + "=";
-    const ca = document.cookie.split(';');
-
-    for (let i = 0; i < ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-    }
-
-    return null;
-  }
-
-  // Método para deletar cookies específicos
   deleteCookie(name: string): void {
     if (!isPlatformBrowser(this.platformId)) return;
-
     document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/`;
   }
 }

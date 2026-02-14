@@ -16,19 +16,3 @@
     transform: translateY(0);
   }
 }
-
-.service-card {
-  transition: all 0.3s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-8px);
-}
-
-.service-icon {
-  transition: transform 0.3s ease;
-}
-
-.service-card:hover .service-icon {
-  transform: scale(1.1);
-}

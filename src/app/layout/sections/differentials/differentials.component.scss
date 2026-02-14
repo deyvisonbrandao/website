@@ -46,11 +46,3 @@
     transform: translateX(0);
   }
 }
-
-.differential-icon {
-  transition: transform 0.3s ease;
-}
-
-.differential-card:hover .differential-icon {
-  transform: scale(1.1);
-}

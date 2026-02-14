@@ -71,10 +71,4 @@ export class CookieConsentComponent implements OnInit, OnDestroy {
     this.showBanner = false;
     this.showPreferences = false;
   }
-
-  resetConsent(): void {
-    this.cookieService.resetConsent();
-    this.showBanner = true;
-    this.showPreferences = false;
-  }
 }

@@ -6,7 +6,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './technologies.component.html',
-  styleUrls: ['./technologies.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class TechnologiesComponent {

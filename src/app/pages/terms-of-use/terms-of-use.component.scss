@@ -15,24 +15,6 @@ section {
   animation: slideInUp 0.6s ease-out;
 }
 
-/* Print styles */
-@media print {
-  .terms-of-use-page {
-    background: white;
-    color: black;
-
-    header button {
-      display: none;
-    }
-
-    section {
-      box-shadow: none;
-      border: 1px solid #e5e7eb;
-      break-inside: avoid;
-    }
-  }
-}
-
 /* Animations */
 @keyframes slideInUp {
   from {

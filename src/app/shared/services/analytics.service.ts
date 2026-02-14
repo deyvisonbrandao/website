@@ -13,7 +13,7 @@ declare global {
   providedIn: 'root'
 })
 export class AnalyticsService {
-  private readonly GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // Substitua pelo seu ID do Google Analytics
+  private readonly GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
   private analyticsInitialized = false;
 
   constructor(
@@ -23,7 +23,6 @@ export class AnalyticsService {
     if (isPlatformBrowser(this.platformId)) {
       this.initializeIfConsented();
 
-      // Observar mudanças no consentimento
       this.cookieService.preferences$.subscribe(preferences => {
         if (preferences.analytics && !this.analyticsInitialized) {
           this.initializeGoogleAnalytics();
@@ -46,19 +45,16 @@ export class AnalyticsService {
     }
 
     try {
-      // Criar o script do Google Analytics
       const script = document.createElement('script');
       script.async = true;
       script.src = `https://www.googletagmanager.com/gtag/js?id=${this.GA_MEASUREMENT_ID}`;
       document.head.appendChild(script);
 
-      // Inicializar dataLayer
       window.dataLayer = window.dataLayer || [];
       window.gtag = function gtag() {
         window.dataLayer.push(arguments);
       };
 
-      // Configurar Google Analytics
       window.gtag('js', new Date());
       window.gtag('config', this.GA_MEASUREMENT_ID, {
         anonymize_ip: true,
@@ -79,12 +75,10 @@ export class AnalyticsService {
     }
 
     try {
-      // Desabilitar Google Analytics
       window.gtag('consent', 'update', {
         analytics_storage: 'denied'
       });
 
-      // Limpar cookies do Google Analytics
       this.clearAnalyticsCookies();
 
       this.analyticsInitialized = false;
@@ -105,13 +99,11 @@ export class AnalyticsService {
 
     cookiesToClear.forEach(cookieName => {
       this.cookieService.deleteCookie(cookieName);
-      // Também tentar deletar com diferentes paths e domains
       document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/; domain=.${window.location.hostname}`;
       document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/; domain=${window.location.hostname}`;
     });
   }
 
-  // Métodos públicos para tracking de eventos
   trackEvent(action: string, category: string, label?: string, value?: number): void {
     if (!this.cookieService.canUseAnalytics() || !isPlatformBrowser(this.platformId)) {
       return;
@@ -128,49 +120,7 @@ export class AnalyticsService {
     }
   }
 
-  trackPageView(page_title: string, page_location?: string): void {
-    if (!this.cookieService.canUseAnalytics() || !isPlatformBrowser(this.platformId)) {
-      return;
-    }
-
-    try {
-      window.gtag('config', this.GA_MEASUREMENT_ID, {
-        page_title: page_title,
-        page_location: page_location || window.location.href
-      });
-    } catch (error) {
-      console.error('Error tracking page view:', error);
-    }
-  }
-
   trackFormSubmission(form_name: string): void {
     this.trackEvent('form_submit', 'engagement', form_name);
-  }
-
-  trackButtonClick(button_name: string): void {
-    this.trackEvent('click', 'engagement', button_name);
-  }
-
-  trackDownload(file_name: string): void {
-    this.trackEvent('file_download', 'engagement', file_name);
-  }
-
-  trackScrollDepth(scroll_depth: number): void {
-    this.trackEvent('scroll', 'engagement', 'depth', scroll_depth);
-  }
-
-  // Método para compliance com LGPD
-  updateConsent(analytics_consent: boolean): void {
-    if (!isPlatformBrowser(this.platformId)) {
-      return;
-    }
-
-    try {
-      window.gtag('consent', 'update', {
-        analytics_storage: analytics_consent ? 'granted' : 'denied'
-      });
-    } catch (error) {
-      console.error('Error updating analytics consent:', error);
-    }
   }
 }
